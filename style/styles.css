@@ -1,0 +1,287 @@
+.nav-menu {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 1rem;
+        border-radius: 0 0 0 10px;
+        z-index: 100;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+        color: white;
+    }
+}
+
+
+/* Стили для всплывающего окна */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--color-background);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    color: #f3f3f3;
+}
+
+.close-modal {
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+:root {
+    --color-primary: #f754e1;
+    --color-secondary: #cd47bb;
+    --color-accent: #f754e1;
+    --color-background: #000000;
+    --color-text: #FFFFFF;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(45deg, #000000, #1A1A1A, #2A2A2A);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    color: var(--color-text);
+    position: relative;
+    margin-top: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-button {
+    position: relative;
+    color: white;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-button:hover {
+    color: var(--color-primary);
+}
+
+.nav-button:hover::after {
+    width: 100%;
+}
+
+.club-intro {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 20px 0;
+}
+
+.club-intro h2 {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.club-intro p {
+    font-size: 18px;
+    color: #ECF0F1;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.club-intro ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.club-intro ul li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #ECF0F1;
+}
+
+.club-intro ul li::before {
+    content: '•';
+    color: var(--color-primary);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.artist-slider {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.artist-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 1.5s ease-in-out;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.artist-slide.active {
+    opacity: 1;
+}
+
+.artist-slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.artist-info {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.artist-info h3 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.artist-info p {
+    font-size: 16px;
+    color: #ECF0F1;
+    margin-bottom: 20px;
+}
+
+.invite-button {
+    position: relative;
+    background: linear-gradient(45deg, var(--color-primary), #f754e1);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 60px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+}
+
+.invite-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(255, 65, 108, 0.6);
+}
+
+.footer {
+    background: #1A1A1A;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+    width: 100%;
+    height: auto;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--color-primary);
+}
+
+.copyright {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.politic_inf a {
+    color: white;
+    transition: color 0.3s;
+}
+
+.politic_inf a:hover {
+    color: var(--color-primary);
+}

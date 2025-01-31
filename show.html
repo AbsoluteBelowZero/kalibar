@@ -26,67 +26,95 @@
             </nav>
         </div>
     </header>
+    </head>
 
-    <div class="gallery-container flex flex-wrap justify-center mt-16">
-        <div class="gallery-item w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2" onclick="openModal('image/beautiful-smoke-43.png')">
-            <img src="image/beautiful-smoke-43.png" alt="Описание изображения 1" class="w-full h-auto">
-        </div>
-        <div class="gallery-item w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2" onclick="openModal('image/beautiful-smoke-43.png')">
-            <img src="image/beautiful-smoke-43.png" alt="Описание изображения 2" class="w-full h-auto">
-        </div>
-        <div class="gallery-item w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2" onclick="openModal('image/beautiful-smoke-43.png')">
-            <img src="image/beautiful-smoke-43.png" alt="Описание изображения 3" class="w-full h-auto">
-        </div>
-        <!-- Добавьте остальные элементы галереи аналогично -->
-    </div>
+    <body>
 
-    <!-- Модальное окно -->
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
 
-    <!-- Футер -->
-    <footer class="footer">
-        <div class="social-icons">
-            <a href="#" class="ri-facebook-fill" title="Facebook"></a>
-            <a href="#" class="ri-instagram-fill" title="Instagram"></a>
-            <a href="#" class="ri-twitter-fill" title="Twitter"></a>
-            <a href="#" class="ri-youtube-fill" title="YouTube"></a>
-        </div>
-        <div class="politic_inf">
-            <div class="copyright">
-                <a href="">© Эротическое кабаре «Калибара», 2013—2025</a>
+        <div class="gallery-container">
+            <div class="gallery-item unique-class-1">
+                <img src="image/beautiful-smoke-43.png" alt="Описание изображения 1">
             </div>
-            <div class="privacy-policy">
-                <a href="">Политика конфиденциальности</a>
+            <div class="gallery-item unique-class-2">
+                <img src="image/beautiful-smoke-43.png" alt="Описание изображения 2">
+            </div>
+            <div class="gallery-item unique-class-3">
+                <img src="image/beautiful-smoke-43.png" alt="Описание изображения 3">
+            </div>
+            <div class="gallery-item unique-class-4">
+                <img src="image/beautiful-smoke-43.png" alt="Описание изображения 4">
+            </div>
+            <div class="gallery-item unique-class-5">
+                <img src="image/beautiful-smoke-43.png" alt="Описание изображения 5">
+            </div>
+            <div class="gallery-item unique-class-5">
+                <img src="image/beautiful-smoke-43.png" alt="Описание изображения 5">
+            </div>
+            <div class="gallery-item unique-class-5">
+                <img src="image/beautiful-smoke-43.png" alt="Описание изображения 5">
             </div>
         </div>
-    </footer>
+        <!-- Футер -->
+        <footer class="footer">
+            <div class="social-icons">
+                <a href="#" class="ri-facebook-fill" title="Facebook"></a>
+                <a href="#" class="ri-instagram-fill" title="Instagram"></a>
+                <a href="#" class="ri-twitter-fill" title="Twitter"></a>
+                <a href="#" class="ri-youtube-fill" title="YouTube"></a>
+            </div>
+            <div class="politic_inf">
+                <div class="copyright">
+                    <a href="">© Эротическое кабаре «Калибара», 2013—2025</a>
+                </div>
+                <div class="privacy-policy">
+                    <a href="">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </footer>
 
-    <script>
-        // Логика для выпадающего меню
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
+        <script>
+            // Логика для выпадающего меню
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
 
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            //gallery
+            var gallery = document.querySelector('#gallery');
+            var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
+            var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
+            var resizeAll = function () {
+                var altura = getVal(gallery, 'grid-auto-rows');
+                var gap = getVal(gallery, 'grid-row-gap');
+                gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+                    var el = item;
+                    el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+                });
+            };
+            gallery.querySelectorAll('img').forEach(function (item) {
+                item.classList.add('byebye');
+                if (item.complete) {
+                    console.log(item.src);
+                }
+                else {
+                    item.addEventListener('load', function () {
+                        var altura = getVal(gallery, 'grid-auto-rows');
+                        var gap = getVal(gallery, 'grid-row-gap');
+                        var gitem = item.parentElement.parentElement;
+                        gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+                        item.classList.remove('byebye');
+                    });
+                }
+            });
+            window.addEventListener('resize', resizeAll);
+            gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    item.classList.toggle('full');
+                });
+            });
 
-        // Функция для открытия модального окна
-        function openModal(src) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("modalImage");
-            modal.style.display = "block";
-            modalImg.src = src;
-        }
-
-        // Функция для закрытия модального окна
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
-    </script>
-</body>
+        </script>
+    </body>
 
 </html>

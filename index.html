@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калибара - Элитный стриптиз-клуб</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+<!-- Навигация -->
+<header class="fixed top-0 left-0 w-full z-50 py-4 bg-black bg-opacity-50">
+    <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="text-2xl font-bold text-white">Калибара</div>
+        <div class="nav-toggle" id="nav-toggle">☰</div>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="index.html" class="nav-button">Главная</a>
+            <a href="./show.html" class="nav-button">Шоу</a>
+            <a href="bar.html" class="nav-button">Бар</a>
+            <a href="gallery.html" class="nav-button">Галерея</a>
+            <a href="contact.html" class="nav-button">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Артистки на полный экран -->
+<section id="artists" class="artist-slider">
+    <div class="artist-slide active">
+        <img src="/beautiful-smoke-43.png" alt="free_entry">
+        <div class="artist-info">
+            <h3>ВХОД</h3>
+            <p>За вход в наш бар оплату не берем</p>
+            <button class="invite-button" onclick="openModal()">Позвонить</button>
+        </div>
+    </div>
+    <div class="artist-slide">
+        <img src="/girl-pink-neon-devushka-rozovyi-neon-chernyi-fon.jpg" alt="Артистка 2">
+        <div class="artist-info">
+            <h3>О БАРЕ</h3>
+            <p>Наиуникальнейший бар с огромным разнообразием напитков</p>
+            <button class="invite-button" onclick="openModal()">Позвонить</button>
+        </div>
+    </div>
+    <div class="artist-slide">
+        <img src="/i.webp" alt="Артистка 3">
+        <div class="artist-info">
+            <h3>ШОУ</h3>
+            <p>У нас есть эро-программа: соло-номера шоу от всех танцовщиц нашего зала</p>
+            <button class="invite-button" onclick="openModal()">Позвонить</button>
+        </div>
+    </div>
+</section>
+
+<!-- Всплывающее окно -->
+<div class="modal" id="callModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2>Звони скорее!</h2>
+        <p>Номер телефона: <a href="tel:+79173495207">+7 (347) 246-25-65</a></p>
+    </div>
+</div>
+
+<!-- Информация о клубе -->
+<section class="container mx-auto px-4 py-20">
+    <div class="club-intro">
+        <h2>О Клубе</h2>
+        <p>Добро пожаловать в Калибара - элитное место, где роскошь и изысканность сочетаются с непринужденной атмосферой.</p>
+        <ul>
+            <li>Изысканная обстановка и непринужденная атмосфера</li>
+            <li>Профессиональный подход и высокий сервис</li>
+            <li>Конфиденциальность и комфорт наших гостей</li>
+            <li>Уникальные шоу и выступления талантливых артисток</li>
+            <li>Приватные VIP-зоны для максимального комфорта</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="footer">
+    <div class="social-icons">
+        <a href="#" class="ri-facebook-fill" title="Facebook"></a>
+        <a href="#" class="ri-instagram-fill" title="Instagram"></a>
+        <a href="#" class="ri-twitter-fill" title="Twitter"></a>
+        <a href="#" class="ri-youtube-fill" title="YouTube"></a>
+    </div>
+    <div class="politic_inf">
+        <div class="copyright">
+            <a href="">© Эротическое кабаре «Калибара», 2013—2025</a>
+        </div>
+        <div class="privacy-policy">
+            <a href="">Политика конфиденциальности</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const slides = document.querySelectorAll('.artist-slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 5000);
+
+    // Логика для выпадающего меню
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Логика для всплывающего окна
+    function openModal() {
+        document.getElementById('callModal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('callModal').classList.remove('active');
+    }
+</script>
+</body>
+</html>

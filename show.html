@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калибара - Элитный стриптиз-клуб</title>
+    <link rel="stylesheet" href="show.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Навигация -->
+    <header class="fixed top-0 left-0 w-full z-50 py-4 bg-black bg-opacity-50">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="text-2xl font-bold text-white">Калибара</div>
+            <div class="nav-toggle" id="nav-toggle">☰</div>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-button">Главная</a>
+                <a href="./show.html" class="nav-button">Шоу</a>
+                <a href="bar.html" class="nav-button">Бар</a>
+                <a href="gallery.html" class="nav-button">Галерея</a>
+                <a href="contact.html" class="nav-button">Контакты</a>
+            </nav>
+        </div>
+    </header>
+    </head>
+
+    <body>
+
+
+        <div class="gallery-container">
+            <div class="gallery-item unique-class-1">
+                <img src="./beautiful-smoke-43.png" alt="Описание изображения 1">
+            </div>
+            <div class="gallery-item unique-class-2">
+                <img src="./beautiful-smoke-43.png" alt="Описание изображения 2">
+            </div>
+            <div class="gallery-item unique-class-3">
+                <img src="./beautiful-smoke-43.png" alt="Описание изображения 3">
+            </div>
+            <div class="gallery-item unique-class-4">
+                <img src="./beautiful-smoke-43.png" alt="Описание изображения 4">
+            </div>
+            <div class="gallery-item unique-class-5">
+                <img src="./beautiful-smoke-43.png" alt="Описание изображения 5">
+            </div>
+            <div class="gallery-item unique-class-5">
+                <img src="./beautiful-smoke-43.png" alt="Описание изображения 5">
+            </div>
+            <div class="gallery-item unique-class-5">
+                <img src="./beautiful-smoke-43.png" alt="Описание изображения 5">
+            </div>
+        </div>
+        <!-- Футер -->
+        <footer class="footer">
+            <div class="social-icons">
+                <a href="#" class="ri-facebook-fill" title="Facebook"></a>
+                <a href="#" class="ri-instagram-fill" title="Instagram"></a>
+                <a href="#" class="ri-twitter-fill" title="Twitter"></a>
+                <a href="#" class="ri-youtube-fill" title="YouTube"></a>
+            </div>
+            <div class="politic_inf">
+                <div class="copyright">
+                    <a href="">© Эротическое кабаре «Калибара», 2013—2025</a>
+                </div>
+                <div class="privacy-policy">
+                    <a href="">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Логика для выпадающего меню
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            //gallery
+            var gallery = document.querySelector('#gallery');
+            var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
+            var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
+            var resizeAll = function () {
+                var altura = getVal(gallery, 'grid-auto-rows');
+                var gap = getVal(gallery, 'grid-row-gap');
+                gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+                    var el = item;
+                    el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+                });
+            };
+            gallery.querySelectorAll('img').forEach(function (item) {
+                item.classList.add('byebye');
+                if (item.complete) {
+                    console.log(item.src);
+                }
+                else {
+                    item.addEventListener('load', function () {
+                        var altura = getVal(gallery, 'grid-auto-rows');
+                        var gap = getVal(gallery, 'grid-row-gap');
+                        var gitem = item.parentElement.parentElement;
+                        gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+                        item.classList.remove('byebye');
+                    });
+                }
+            });
+            window.addEventListener('resize', resizeAll);
+            gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    item.classList.toggle('full');
+                });
+            });
+
+        </script>
+    </body>
+
+</html>

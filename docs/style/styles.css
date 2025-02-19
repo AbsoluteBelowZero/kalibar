@@ -133,6 +133,10 @@ body {
     width: 100%;
 }
 
+.nav-toggle{
+    height: 30px;
+    
+}
 .club-intro {
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
